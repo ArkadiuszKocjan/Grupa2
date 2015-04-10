@@ -3,32 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GrepEngine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GrepEngineUnitTests
 {
     [TestClass]
-    class CounterUnitTest
+   public class CounterUnitTest
     {
         private IEnumerable<string> testData;
-        [TestMethod()]
+        private int expected;
+
+        [TestMethod]
         public void ShouldCountNumberOfRepetedWord()
         {
+            var testCounter = new Counter();
+            expected = 4;
+            testData = new List<string> { "test", "My test test", "Thisis test data" };
 
+            var result = testCounter.Count(testData, "test");
+
+            Assert.AreEqual(expected, result);
         }
 
-        //CounterUnitTest()
+        //public static IEnumerable<T> Add<T>(this IEnumerable<T> e, T value)
         //{
-        //    var data = new[] {"test", "Mytest test", "Thisistestdata"};
-        //    foreach (var s in data)
-        //    {
-        //        testData = testData.Add(s);
-        //    }
-        //}
-
-        //public static IEnumerable<T> Add<T>(this IEnumerable<T> e, T value) 
-        //{
-        //    foreach ( var cur in e) 
+        //    foreach (var cur in e)
         //    {
         //        yield return cur;
         //    }
