@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ilogger.cs" />
+    <Compile Include="ProffessionalLogger.cs" />
     <Compile Include="Searcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -15,6 +15,9 @@ namespace GrepEngineUnitTests
         private List<string> _listString;
         private List<string> _correctLines;
         private List<string> _emptyList;
+        /// <summary>
+        /// initializing test vars
+        /// </summary>
         [TestInitialize]
         public void LoadTextInput()
         {
@@ -30,24 +33,34 @@ namespace GrepEngineUnitTests
             _emptyList = new List<string>();
 
         }
+        /// <summary>
+        /// checks if FindLineWithString returns 2 lines containing searched words
+        /// </summary>
         [TestMethod]
         public void FindLineWithStringTest()
         {
-            var searcher = new Searcher();
+            var logger = new Moq.Mock<Ilogger>();
+            var searcher = new Searcher(logger.Object);
             CollectionAssert.AreEqual(searcher.FindLineWithString(_listString, "mole of").ToList(), _correctLines);
         }
-
+        /// <summary>
+        /// checks if FindLineWithString returns empty IEnumerable if text in where we search is empty
+        /// </summary>
         [TestMethod]
         public void EmptyFindLineWithStringTest()
         {
-            var searcher = new Searcher();
+            var logger = new Moq.Mock<Ilogger>();
+            var searcher = new Searcher(logger.Object);
             CollectionAssert.AreEqual(searcher.FindLineWithString(_emptyList, "ala").ToList(), _emptyList);
         }
-
+        /// <summary>
+        /// checks if FindLineWithString returns empty IEnumerable when searched string isnt there
+        /// </summary>
         [TestMethod]
         public void IncorrectFindLineWithStringTest()
         {
-            var searcher = new Searcher();
+            var logger = new Moq.Mock<Ilogger>();
+            var searcher = new Searcher(logger.Object);
             CollectionAssert.AreEqual(searcher.FindLineWithString(_listString, "alasad").ToList(), _emptyList);
         }
 
@@ -57,7 +70,8 @@ namespace GrepEngineUnitTests
         [TestMethod]
         public void ShouldReturnEmptyIEnumerable()
         {
-            var searcher = new Searcher();
+            var logger = new Moq.Mock<Ilogger>();
+            var searcher = new Searcher(logger.Object);
             CollectionAssert.AreEqual(searcher.FindLineWithString(null, null).ToList(), _emptyList);
         }
 

@@ -8,6 +8,11 @@ namespace GrepEngine
 {
     public class Searcher
     {
+        private Ilogger _logger;
+        public Searcher(Ilogger logger)
+        {
+            _logger = logger;
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -22,7 +27,8 @@ namespace GrepEngine
                 
             }
             IEnumerable<string> results = inputText.Where(s => s.Contains(searchedString));
-            Logger.Logger.Log("FindLineWithString executed");
+            _logger.Log("FindLineWithString");
+            
             return results;
             
         }
