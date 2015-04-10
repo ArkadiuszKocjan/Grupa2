@@ -10,6 +10,12 @@ namespace DataProvider
 {
     public class DataProvider
     {
+        public IEnumerable<string> SplitUrlContent(string content, bool regexMode)
+        {
+            if (regexMode)
+                content = Regex.Replace(content, @"\<(.+?)\>", "");
+            return content.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+        }
 
         public IEnumerable<string> DownloadPageContent(string url, bool regexMode) 
         {
@@ -17,9 +23,7 @@ namespace DataProvider
             try
             {
                 string content = dowloader.DownloadString(url);
-                if (regexMode)
-                    content = Regex.Replace(content, @"\<(.+?)\>", "");
-                return  content.Split('\n');
+                return SplitUrlContent(content, regexMode);
             }
             catch (WebException ex)
             {
