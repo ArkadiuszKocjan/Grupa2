@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GrepEngineUnitTests
+namespace GrepEngine
 {
-    public class Class1
+    public interface ICounter
     {
+        int Count(IEnumerable<string> allDataEnumerable, string dataToFind);
     }
 }
